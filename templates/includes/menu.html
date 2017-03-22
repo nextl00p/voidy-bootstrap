@@ -1,0 +1,32 @@
+<nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+	   <div class="navbar-header">
+		<button type="button" class="navbar-toggle" 
+				data-toggle="collapse" data-target="#main-navbar-collapse">
+		  <span class="sr-only">Toggle navigation</span>
+		  <span class="icon-bar"></span>
+		  <span class="icon-bar"></span>
+		  <span class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" href="{{ SITEURL }}/" rel="home">
+          <i class="fa fa-home fa-fw fa-lg"> </i> {{ HOME_LABEL|default('') }}</a>
+       </div>
+       <div class="collapse navbar-collapse" id="main-navbar-collapse">
+       {% for page in pages %} {% if not page.parent %}{% if page.children %}
+			<div class="dropdown nav navbar-nav" id="main-navbar-collapse">
+				<button class ="btn btn-primary dropdown-toggle" type="button"
+					data-toggle="dropdown">{{ page.title }}
+					<span class="caret"></span></button>
+				<ul class="dropdown-menu">
+					{% for child in page.children %}
+					<li><a href="{{ SITEURL }}/{{ child.url }}">{{ child.title }}</a></li>
+					{% endfor %}
+				</ul> <!-- /nav -->
+			</div>
+	   {% endif %}{% endif %}{% endfor %}
+        
+      </div> <!-- /navbar-collapse -->
+	  </div> <!-- /container -->
+</nav> <!-- /navbar -->
+
+
